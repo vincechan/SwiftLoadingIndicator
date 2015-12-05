@@ -3,6 +3,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,39 +20,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekq-HD-pQ3">
+                                <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-y1-WaL">
+                                        <rect key="frame" x="402" y="20" width="190" height="40"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="KUD-My-UGL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Overlay Screen">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="overlayScreenButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5KC-Sc-wHI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QS7-eO-7dI">
+                                        <rect key="frame" x="8" y="20" width="190" height="40"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="hf8-0J-DLU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="Overlay Map">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="overlayMapButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t4V-wr-TV0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.93715232329999998" green="0.93715232329999998" blue="0.93715232329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vmf-y1-WaL" firstAttribute="top" secondItem="Ekq-HD-pQ3" secondAttribute="top" constant="29" id="QXb-Wt-84X"/>
+                                    <constraint firstAttribute="height" constant="80" id="UzU-dg-slx"/>
+                                    <constraint firstItem="QS7-eO-7dI" firstAttribute="baseline" secondItem="vmf-y1-WaL" secondAttribute="firstBaseline" id="X9l-jS-Kue"/>
+                                    <constraint firstAttribute="bottom" secondItem="vmf-y1-WaL" secondAttribute="bottom" constant="20" id="YCL-yM-nMB"/>
+                                    <constraint firstItem="vmf-y1-WaL" firstAttribute="centerY" secondItem="Ekq-HD-pQ3" secondAttribute="centerY" id="adZ-ap-pgn"/>
+                                    <constraint firstItem="QS7-eO-7dI" firstAttribute="firstBaseline" secondItem="vmf-y1-WaL" secondAttribute="baseline" id="d5w-ow-Pv3"/>
+                                    <constraint firstItem="QS7-eO-7dI" firstAttribute="top" secondItem="vmf-y1-WaL" secondAttribute="top" id="eVO-p7-RrY"/>
+                                    <constraint firstItem="vmf-y1-WaL" firstAttribute="trailing" secondItem="Ekq-HD-pQ3" secondAttribute="trailingMargin" id="uSG-oK-MfU"/>
+                                    <constraint firstItem="QS7-eO-7dI" firstAttribute="leading" secondItem="Ekq-HD-pQ3" secondAttribute="leadingMargin" id="ucK-b9-1NI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="QXb-Wt-84X"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KNR-3a-vMu">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="520"/>
                                 <animations/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QS7-eO-7dI">
-                                <rect key="frame" x="265" y="511" width="70" height="42"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" title="Launch">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="launchButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xUD-jQ-Swd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <constraints>
-                            <constraint firstItem="KNR-3a-vMu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="174-BN-c7x"/>
-                            <constraint firstItem="KNR-3a-vMu" firstAttribute="centerX" secondItem="QS7-eO-7dI" secondAttribute="centerX" id="2pF-ss-Xzy"/>
-                            <constraint firstItem="KNR-3a-vMu" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="CbS-g3-NTC"/>
-                            <constraint firstItem="QS7-eO-7dI" firstAttribute="top" secondItem="KNR-3a-vMu" secondAttribute="bottom" constant="-89" id="I7N-em-sLx"/>
-                            <constraint firstItem="KNR-3a-vMu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="knP-4n-JNk"/>
-                            <constraint firstAttribute="trailing" secondItem="KNR-3a-vMu" secondAttribute="trailing" id="nbD-Nx-c0D"/>
+                            <constraint firstItem="Ekq-HD-pQ3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4Zv-OI-9f8"/>
+                            <constraint firstItem="Ekq-HD-pQ3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="496" id="4be-sV-m8S"/>
+                            <constraint firstItem="KNR-3a-vMu" firstAttribute="trailing" secondItem="Ekq-HD-pQ3" secondAttribute="trailing" id="Hn1-5x-JNn"/>
+                            <constraint firstItem="KNR-3a-vMu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="LdR-f6-tRD"/>
+                            <constraint firstItem="KNR-3a-vMu" firstAttribute="leading" secondItem="Ekq-HD-pQ3" secondAttribute="leading" id="c80-O1-Mer"/>
+                            <constraint firstAttribute="trailing" secondItem="Ekq-HD-pQ3" secondAttribute="trailing" id="r4E-10-K13"/>
+                            <constraint firstItem="Ekq-HD-pQ3" firstAttribute="top" secondItem="KNR-3a-vMu" secondAttribute="bottom" id="rdh-Iw-y1s"/>
+                            <constraint firstItem="Ekq-HD-pQ3" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="rj5-we-C3S"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4be-sV-m8S"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="KNR-3a-vMu" id="hoG-Ag-grH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

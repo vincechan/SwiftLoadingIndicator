@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  SwiftLoadingIndicator
@@ -7,14 +8,26 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
 
-    @IBAction func launchButtonTouched(sender: AnyObject) {
-        LoadingIndicatorView.show(view)
+    @IBOutlet weak var mapView: MKMapView!
+    
+    @IBAction func overlayMapButtonTouched(sender: AnyObject) {
+        LoadingIndicatorView.show(mapView, loadingText: "Loading")
         
         // simulate time consuming work
-        NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: "doWork", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "doWork", userInfo: nil, repeats: false)
+    }
+    
+    
+    @IBAction func overlayScreenButtonTouched(sender: AnyObject) {
+        
+        LoadingIndicatorView.show("Loading")
+        
+        // simulate time consuming work
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "doWork", userInfo: nil, repeats: false)
     }
     
     func doWork() {
