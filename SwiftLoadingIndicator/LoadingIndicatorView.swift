@@ -12,26 +12,26 @@ class LoadingIndicatorView {
     static var currentOverlay : UIView?
     
     static func show() {
-        guard let currentMainWindow = UIApplication.sharedApplication().keyWindow else {
+        guard let currentMainWindow = UIApplication.shared.keyWindow else {
             print("No main window.")
             return
         }
         show(currentMainWindow)
     }
     
-    static func show(loadingText: String) {
-        guard let currentMainWindow = UIApplication.sharedApplication().keyWindow else {
+    static func show(_ loadingText: String) {
+        guard let currentMainWindow = UIApplication.shared.keyWindow else {
             print("No main window.")
             return
         }
         show(currentMainWindow, loadingText: loadingText)
     }
     
-    static func show(overlayTarget : UIView) {
+    static func show(_ overlayTarget : UIView) {
         show(overlayTarget, loadingText: nil)
     }
     
-    static func show(overlayTarget : UIView, loadingText: String?) {
+    static func show(_ overlayTarget : UIView, loadingText: String?) {
         // Clear it first in case it was already shown
         hide()
         
@@ -39,12 +39,12 @@ class LoadingIndicatorView {
         let overlay = UIView(frame: overlayTarget.frame)
         overlay.center = overlayTarget.center
         overlay.alpha = 0
-        overlay.backgroundColor = UIColor.blackColor()
+        overlay.backgroundColor = UIColor.black
         overlayTarget.addSubview(overlay)
-        overlayTarget.bringSubviewToFront(overlay)
+        overlayTarget.bringSubview(toFront: overlay)
         
         // Create and animate the activity indicator
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
         indicator.center = overlay.center
         indicator.startAnimating()
         overlay.addSubview(indicator)
@@ -53,7 +53,7 @@ class LoadingIndicatorView {
         if let textString = loadingText {
             let label = UILabel()
             label.text = textString
-            label.textColor = UIColor.whiteColor()
+            label.textColor = UIColor.white
             label.sizeToFit()
             label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 30)
             overlay.addSubview(label)

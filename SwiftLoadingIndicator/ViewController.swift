@@ -14,20 +14,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBAction func overlayMapButtonTouched(sender: AnyObject) {
+    @IBAction func overlayMapButtonTouched(_ sender: AnyObject) {
         LoadingIndicatorView.show(mapView, loadingText: "Loading")
         
         // simulate time consuming work
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "doWork", userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.doWork), userInfo: nil, repeats: false)
     }
     
     
-    @IBAction func overlayScreenButtonTouched(sender: AnyObject) {
+    @IBAction func overlayScreenButtonTouched(_ sender: AnyObject) {
         
         LoadingIndicatorView.show("Loading")
         
         // simulate time consuming work
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "doWork", userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.doWork), userInfo: nil, repeats: false)
     }
     
     func doWork() {
