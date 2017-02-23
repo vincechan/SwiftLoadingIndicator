@@ -103,7 +103,7 @@
 				TargetAttributes = {
 					A9EE8FDB1C0EF87B0093D0B6 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = EKE7VUCX4W;
+						DevelopmentTeam = E5345AVPAT;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -259,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E5345AVPAT;
 				INFOPLIST_FILE = SwiftLoadingIndicator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.vincechan.SwiftLoadingIndicator;
@@ -271,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E5345AVPAT;
 				INFOPLIST_FILE = SwiftLoadingIndicator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.vincechan.SwiftLoadingIndicator;

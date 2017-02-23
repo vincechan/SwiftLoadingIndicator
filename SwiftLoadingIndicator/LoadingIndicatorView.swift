@@ -10,6 +10,8 @@ import UIKit
 class LoadingIndicatorView {
     
     static var currentOverlay : UIView?
+    static var currentOverlayTarget : UIView?
+    static var currentLoadingText: String?
     
     static func show() {
         guard let currentMainWindow = UIApplication.shared.keyWindow else {
@@ -34,6 +36,13 @@ class LoadingIndicatorView {
     static func show(_ overlayTarget : UIView, loadingText: String?) {
         // Clear it first in case it was already shown
         hide()
+        
+        // register device orientation notification
+        NotificationCenter.default.addObserver(
+            self, selector:
+            #selector(LoadingIndicatorView.rotated),
+            name: NSNotification.Name.UIDeviceOrientationDidChange,
+            object: nil)
         
         // Create the overlay
         let overlay = UIView(frame: overlayTarget.frame)
@@ -66,12 +75,27 @@ class LoadingIndicatorView {
         UIView.commitAnimations()
         
         currentOverlay = overlay
+        currentOverlayTarget = overlayTarget
+        currentLoadingText = loadingText
     }
     
     static func hide() {
         if currentOverlay != nil {
+            
+            // unregister device orientation notification
+            NotificationCenter.default.removeObserver(self,                                                      name: NSNotification.Name.UIDeviceOrientationDidChange,                                                      object: nil)
+            
             currentOverlay?.removeFromSuperview()
             currentOverlay =  nil
+            currentLoadingText = nil
+            currentOverlayTarget = nil
+        }
+    }
+    
+    @objc private static func rotated() {
+        // handle device orientation change by reactivating the loading indicator
+        if currentOverlay != nil {
+            show(currentOverlayTarget!, loadingText: currentLoadingText)
         }
     }
 }
