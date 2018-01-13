@@ -17,7 +17,7 @@ Call hide method to hide the indicator after long running task.
 ##### Show indicator to cover entire screen
 LoadingIndicatorView.show()
 
-##### how indicator to cover entire screen with custom text
+##### Show indicator to cover entire screen with custom text
 LoadingIndicatorView.show("Loading")
 
 ##### Show indicator to cover target view
