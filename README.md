@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/vincechan/SwiftLoadingIndicator.svg?branch=master)](https://travis-ci.org/vincechan/SwiftLoadingIndicator)
+
 # SwiftLoadingIndicator
 Loading Indicator in Swift
 
