@@ -3,7 +3,7 @@
 # SwiftLoadingIndicator
 Loading Indicator in Swift
 
-<img src="https://raw.github.com/vincechan/SwiftLoadingIndicator/master/ScreenShots/ActivityIndicatorWithOverlay.gif" alt="screen shot" >
+<img src="https://raw.github.com/vincechan/SwiftLoadingIndicator/master/ScreenShots/SwiftLoadingIndicatorIphoneX.gif" alt="screen shot" >
 
 ## Features
 
