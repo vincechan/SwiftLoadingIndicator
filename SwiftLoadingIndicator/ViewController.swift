@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.doWork), userInfo: nil, repeats: false)
     }
     
-    func doWork() {
+    @objc func doWork() {
         // dismiss the loading indicator view once work is done
         LoadingIndicatorView.hide()
     }
