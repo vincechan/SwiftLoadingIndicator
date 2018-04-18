@@ -30,3 +30,6 @@ LoadingIndicatorView.show(target, "Loading")
 
 ##### Hide indicator
 LoadingIndicatorView.hide()
+
+## LICENSE
+[MIT](/LICENSE)
