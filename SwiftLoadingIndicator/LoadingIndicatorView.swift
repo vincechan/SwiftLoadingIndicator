@@ -45,12 +45,28 @@ class LoadingIndicatorView {
             object: nil)
         
         // Create the overlay
-        let overlay = UIView(frame: overlayTarget.frame)
+        let overlay = UIView()
         overlay.center = overlayTarget.center
         overlay.alpha = 0
         overlay.backgroundColor = UIColor.black
+        overlay.translatesAutoresizingMaskIntoConstraints = false
         overlayTarget.addSubview(overlay)
         overlayTarget.bringSubview(toFront: overlay)
+        
+        let horConstraint = NSLayoutConstraint(item: overlay, attribute: .centerX, relatedBy: .equal,
+                                               toItem: overlayTarget, attribute: .centerX,
+                                               multiplier: 1.0, constant: 0.0)
+        let verConstraint = NSLayoutConstraint(item: overlay, attribute: .centerY, relatedBy: .equal,
+                                               toItem: overlayTarget, attribute: .centerY,
+                                               multiplier: 1.0, constant: 0.0)
+        let widConstraint = NSLayoutConstraint(item: overlay, attribute: .width, relatedBy: .equal,
+                                               toItem: overlayTarget, attribute: .width,
+                                               multiplier: 1.0, constant: 0.0)
+        let heiConstraint = NSLayoutConstraint(item: overlay, attribute: .height, relatedBy: .equal,
+                                               toItem: overlayTarget, attribute: .height,
+                                               multiplier: 1.0, constant: 0.0)
+        
+        overlayTarget.addConstraints([horConstraint, verConstraint, widConstraint, heiConstraint])
         
         // Create and animate the activity indicator
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
