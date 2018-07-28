@@ -80,7 +80,7 @@ class LoadingIndicatorView {
             label.text = textString
             label.textColor = UIColor.white
             label.sizeToFit()
-            label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 30)
+            label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + indicator.bounds.height)
             overlay.addSubview(label)
         }
         
