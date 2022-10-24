@@ -13,8 +13,17 @@ class LoadingIndicatorView {
     static var currentOverlayTarget : UIView?
     static var currentLoadingText: String?
     
+    // iOS 13 API Deprecated the .keyWindow
+    static var mainWindow: UIWindow? {
+        if #available(iOS 13.0, *) {
+            return UIApplication.shared.windows.first
+        } else {
+            return UIApplication.shared.keyWindow
+        }
+    }
+    
     static func show() {
-        guard let currentMainWindow = UIApplication.shared.keyWindow else {
+        guard let currentMainWindow = mainWindow else {
             print("No main window.")
             return
         }
@@ -22,7 +31,7 @@ class LoadingIndicatorView {
     }
     
     static func show(_ loadingText: String) {
-        guard let currentMainWindow = UIApplication.shared.keyWindow else {
+        guard let currentMainWindow = mainWindow else {
             print("No main window.")
             return
         }
@@ -33,14 +42,28 @@ class LoadingIndicatorView {
         show(overlayTarget, loadingText: nil)
     }
     
-    static func show(_ overlayTarget : UIView, loadingText: String?) {
+    static func show(
+        _ overlayTarget : UIView,
+        fadeTime: Double = 0.5,
+        loadingText: String?,
+        backgroundAlpha: Double = 0.5,
+        backgroundColor: UIColor = UIColor.black,
+        useBlurFx: Bool = false,
+        blurStyle: UIBlurEffect.Style = UIBlurEffect.Style.extraLight
+    ) {
         // Clear it first in case it was already shown
         hide()
         
         // Create the overlay
         let overlay = UIView()
         overlay.alpha = 0
-        overlay.backgroundColor = UIColor.black
+        
+        if useBlurFx {
+            overlay.backgroundColor = UIColor.clear
+        } else {
+            overlay.backgroundColor = backgroundColor.withAlphaComponent(backgroundAlpha)
+        }
+        
         overlay.translatesAutoresizingMaskIntoConstraints = false
         overlayTarget.addSubview(overlay)
         overlayTarget.bringSubview(toFront: overlay)
@@ -48,8 +71,23 @@ class LoadingIndicatorView {
         overlay.widthAnchor.constraint(equalTo: overlayTarget.widthAnchor).isActive = true
         overlay.heightAnchor.constraint(equalTo: overlayTarget.heightAnchor).isActive = true
         
+        // Setup the Blur (if requested)
+        if useBlurFx {
+            let blurEffect = UIBlurEffect(style: blurStyle)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = overlay.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            overlay.addSubview(blurEffectView)
+        }
+        
         // Create and animate the activity indicator
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        var indicator: UIActivityIndicatorView;
+        if #available(iOS 13.0, *) {
+            indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.large)
+        } else {
+            indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        }
+        
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.startAnimating()
         overlay.addSubview(indicator)
@@ -69,10 +107,10 @@ class LoadingIndicatorView {
         }
         
         // Animate the overlay to show
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(0.5)
-        overlay.alpha = overlay.alpha > 0 ? 0 : 0.5
-        UIView.commitAnimations()
+        /// the opacity is set on the background color not in the alpha
+        UIView.animate(withDuration: fadeTime, animations: {
+            overlay.alpha = overlay.alpha > 0 ? 0 : 1
+        })
         
         currentOverlay = overlay
         currentOverlayTarget = overlayTarget
